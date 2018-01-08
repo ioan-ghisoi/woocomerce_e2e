@@ -1,0 +1,16 @@
+{
+  "name": "e2e_wordpress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chimp": "^0.50.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/chimp ./config/chimp.js --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
