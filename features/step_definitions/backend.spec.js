@@ -1,130 +1,208 @@
-/* eslint-disable func-names, prefer-arrow-callback */
-import chai from 'chai';
+/* eslint-disable func-names, prefer-arrow-callback, no-reserved-keys */
 import Globals from '../../config/globals';
 
-const URL = Globals.value.url;
-const VAL = Globals.value;
 const BACKEND = Globals.selector.backend;
-const FRONTEND = Globals.selector.frontend;
+const VAL = Globals.value;
 
 export default function () {
-  this.Given(/^I set the integration type to (.*)$/, (integration) => {
-    switch (integration) {
-      case 'frames':
-        browser.selectByValue(BACKEND.plugin.basic_category.integration, 'embedded');
-        chai.expect(browser.getValue(BACKEND.plugin.basic_category.integration)).to.equal('embedded');
+  this.Given(/^I (.*) void charge on cancelled order$/, (option) => {
+    switch (option) {
+      case 'enable':
+        if (!browser.isSelected(BACKEND.plugin.non_pci.cancel_status_on_void)) {
+          browser.click(BACKEND.plugin.non_pci.cancel_status_on_void);
+        }
+        break;
+      case 'disable':
+        if (browser.isSelected(BACKEND.plugin.non_pci.cancel_status_on_void)) {
+          browser.click(BACKEND.plugin.non_pci.cancel_status_on_void);
+        }
+        break;
+      default:
+        break;
+    }
+  });
+  this.Given(/^I set the (.*) payment action to (.*)$/, (type, mode) => {
+    switch (type) {
+      case 'pci':
+        switch (mode) {
+          case 'authorize and capture':
+            browser.click(BACKEND.plugin.pci.payment_action);
+            browser.selectByValue(BACKEND.plugin.pci.payment_action_selector, 'authorize_capture');
+            break;
+          case 'authorize only':
+            browser.click(BACKEND.plugin.pci.payment_action);
+            browser.selectByValue(BACKEND.plugin.pci.payment_action_selector, 'authorize');
+            break;
+          default:
+            break;
+        }
+        break;
+      case 'non-pci':
+        switch (mode) {
+          case 'authorize and capture':
+            browser.click(BACKEND.plugin.non_pci.payment_action);
+            browser.selectByValue(BACKEND.plugin.non_pci.payment_action_selector, 'authorize_capture');
+            break;
+          case 'authorize only':
+            browser.click(BACKEND.plugin.non_pci.payment_action);
+            browser.selectByValue(BACKEND.plugin.non_pci.payment_action_selector, 'authorize');
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  });
+  this.Given(/^I set the (.*) autocapture time to (.*)$/, (type, time) => {
+    switch (type) {
+      case 'pci':
+        browser.setValue(BACKEND.plugin.pci.autocapture_time, time);
+        break;
+      case 'non-pci':
+        browser.setValue(BACKEND.plugin.non_pci.autocapture_time, time);
+        break;
+      default:
+        break;
+    }
+  });
+  this.Given(/^I set the (.*) new order status to (.*)$/, (type, mode) => {
+    switch (type) {
+      case 'pci':
+        switch (mode) {
+          case 'hold':
+            browser.click(BACKEND.plugin.pci.new_order_status);
+            browser.selectByValue(BACKEND.plugin.pci.new_order_status_selector, 'on-hold');
+            break;
+          case 'processing':
+            browser.click(BACKEND.plugin.pci.payment_action);
+            browser.selectByValue(BACKEND.plugin.pci.new_order_status_selector, 'processing');
+            break;
+          default:
+            break;
+        }
+        break;
+      case 'non-pci':
+        switch (mode) {
+          case 'hold':
+            browser.click(BACKEND.plugin.non_pci.new_order_status);
+            browser.selectByValue(BACKEND.plugin.non_pci.new_order_status_selector, 'on-hold');
+            break;
+          case 'processing':
+            browser.click(BACKEND.plugin.non_pci.payment_action);
+            browser.selectByValue(BACKEND.plugin.non_pci.new_order_status_selector, 'processing');
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  });
+  this.Given(/^I (.*) three d for (.*)$/, (option, type) => {
+    switch (type) {
+      case 'non-pci':
+        switch (option) {
+          case 'enable':
+            browser.click(BACKEND.plugin.non_pci.three_d);
+            browser.selectByValue(BACKEND.plugin.non_pci.three_d_selector, '2');
+            break;
+          case 'disable':
+            browser.click(BACKEND.plugin.non_pci.three_d);
+            browser.selectByValue(BACKEND.plugin.non_pci.three_d_selector, '1');
+            break;
+          default:
+            break;
+        }
+        break;
+      case 'pci':
+        switch (option) {
+          case 'enable':
+            browser.click(BACKEND.plugin.pci.three_d);
+            browser.selectByValue(BACKEND.plugin.pci.three_d_selector, '2');
+            break;
+          case 'disable':
+            browser.click(BACKEND.plugin.pci.three_d);
+            browser.selectByValue(BACKEND.plugin.pci.three_d_selector, '1');
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  });
+  this.Given(/^I (.*) saved cards for (.*)$/, (option, type) => {
+    switch (type) {
+      case 'non-pci':
+        switch (option) {
+          case 'enable':
+            if (!browser.isSelected(BACKEND.plugin.non_pci.save_cards)) {
+              browser.click(BACKEND.plugin.non_pci.save_cards);
+            }
+            break;
+          case 'disable':
+            if (browser.isSelected(BACKEND.plugin.non_pci.save_cards)) {
+              browser.click(BACKEND.plugin.non_pci.save_cards);
+            }
+            break;
+          default:
+            break;
+        }
+        break;
+      case 'pci':
+        switch (option) {
+          case 'enable':
+            if (!browser.isSelected(BACKEND.plugin.pci.save_cards)) {
+              browser.click(BACKEND.plugin.pci.save_cards);
+            }
+            break;
+          case 'disable':
+            if (browser.isSelected(BACKEND.plugin.pci.save_cards)) {
+              browser.click(BACKEND.plugin.pci.save_cards);
+            }
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  });
+  this.Given(/^I set the integration type to (.*)$/, (option) => {
+    switch (option) {
+      case 'js':
+        browser.click(BACKEND.plugin.non_pci.integration);
+        browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'checkoutjs');
         break;
       case 'hosted':
-        browser.selectByValue(BACKEND.plugin.basic_category.integration, 'hosted');
-        chai.expect(browser.getValue(BACKEND.plugin.basic_category.integration)).to.equal('hosted');
+        browser.click(BACKEND.plugin.non_pci.integration);
+        browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'hosted');
+        break;
+      case 'frames':
+        browser.click(BACKEND.plugin.non_pci.integration);
+        browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'frames');
         break;
       default:
-        console.log('OPTION EXCEPTION');
         break;
     }
   });
-
-  this.Given(/^I set the payment option title$/, () => {
-    browser.setValue(BACKEND.plugin.basic_category.title, VAL.title);
-  });
-
-  this.Given(/^I set the payment option order$/, () => {
-    browser.setValue(BACKEND.plugin.basic_category.sort_order, VAL.sort_order);
-  });
-
-  this.Given(/^I set the payment mode to (.*)$/, (mode) => {
-    switch (mode) {
-      case 'cards':
-        browser.selectByValue(BACKEND.plugin.basic_category.hosted_payment_mode, 'cards');
-        break;
-      case 'local payments':
-        browser.selectByValue(BACKEND.plugin.basic_category.hosted_payment_mode, 'localpayments');
-        break;
-      case 'mixed':
-        browser.selectByValue(BACKEND.plugin.basic_category.hosted_payment_mode, 'mixed');
-        break;
-      default:
-        browser.selectByValue(BACKEND.plugin.basic_category.hosted_payment_mode, 'cards');
-        break;
+  this.Given(/^I customise the js and hosted solution$/, () => {
+    browser.setValue(BACKEND.plugin.non_pci.lightbox_url, VAL.customisation.lightbox_url);
+    browser.setValue(BACKEND.plugin.non_pci.theme, VAL.customisation.theme);
+    browser.setValue(BACKEND.plugin.non_pci.js_title, VAL.customisation.js_title);
+    browser.setValue(BACKEND.plugin.non_pci.widget_color, VAL.customisation.widget_color);
+    browser.setValue(BACKEND.plugin.non_pci.form_button_color, VAL.customisation.form_button_color);
+    browser.setValue(BACKEND.plugin.non_pci.form_label_color, VAL.customisation.form_label_color);
+    browser.setValue(BACKEND.plugin.non_pci.opacity, VAL.customisation.opacity);
+    if (!browser.isSelected(BACKEND.plugin.non_pci.currency_code)) {
+      browser.click(BACKEND.plugin.non_pci.currency_code);
     }
-  });
-
-  this.Given(/^I set the theme color$/, () => {
-    browser.setValue(BACKEND.plugin.basic_category.hosted_theme_color, VAL.theme_color);
-  });
-
-  this.Given(/^I set the button label$/, () => {
-    browser.setValue(BACKEND.plugin.basic_category.hosted_button_label, VAL.button_label);
-  });
-
-  this.Given(/^I (.*) Vault$/, (option) => {
-    switch (option) {
-      case 'enable':
-        browser.selectByValue(BACKEND.plugin.advanced_category.vault, '1');
-        break;
-      case 'disable':
-        browser.selectByValue(BACKEND.plugin.advanced_category.vault, '0');
-        break;
-      default:
-        browser.selectByValue(BACKEND.plugin.advanced_category.vault, '0');
-        break;
-    }
-  });
-
-  this.Given(/^I set Vault title$/, () => {
-    browser.setValue(BACKEND.plugin.advanced_category.vaut_title, VAL.vaut_title);
-  });
-
-  this.Given(/^I (.*) THREE D$/, (option) => {
-    switch (option) {
-      case 'enable':
-        browser.selectByValue(BACKEND.plugin.advanced_category.three_d, '1');
-        chai.expect(browser.getValue(BACKEND.plugin.advanced_category.three_d)).to.equal('1');
-        break;
-      case 'disable':
-        browser.selectByValue(BACKEND.plugin.advanced_category.three_d, '0');
-        chai.expect(browser.getValue(BACKEND.plugin.advanced_category.three_d)).to.equal('0');
-        break;
-      default:
-        console.log('EXCEPTIONNNNNN');
-        // browser.selectByValue(BACKEND.plugin.advanced_category.three_d, '0');
-        break;
-    }
-  });
-
-  this.Given(/^I (.*) autocapture$/, (option) => {
-    switch (option) {
-      case 'enable':
-        browser.selectByValue(BACKEND.plugin.advanced_category.autocapture, '1');
-        break;
-      case 'disable':
-        browser.selectByValue(BACKEND.plugin.advanced_category.autocapture, '0');
-        break;
-      default:
-        browser.selectByValue(BACKEND.plugin.advanced_category.autocapture, '0');
-        break;
-    }
-  });
-
-  this.Given(/^I update the stock for my test item$/, () => {
-    browser.url(URL.magento_base + URL.test_product_path);
-    if (browser.isVisible(BACKEND.admin_username)) {
-      browser.setValue(BACKEND.admin_username, VAL.admin.username);
-      browser.setValue(BACKEND.admin_password, VAL.admin.password);
-      browser.click(BACKEND.admin_sign_in);
-      browser.url(URL.magento_base + URL.test_product_path); // avoid magento cache popup
-    }
-    browser.waitUntil(function () {
-      return browser.isVisible(BACKEND.test_product_quantity);
-    }, VAL.timeout_out, 'stores button should be visible');
-    browser.setValue(BACKEND.test_product_quantity, 999);
-    browser.selectByValue(BACKEND.test_product_stock, '1');
-    browser.click(BACKEND.test_product_save);
-    browser.waitUntil(function () {
-      return !browser.isVisible(FRONTEND.order.loader);
-    }, VAL.timeout_out, 'Product should be updated');
-    browser.waitUntil(function () {
-      return !browser.isVisible(BACKEND.admin_loader);
-    }, VAL.timeout_out, 'Product should be updated');
+    browser.click(BACKEND.plugin.non_pci.overlay_shade);
+    browser.selectByValue(BACKEND.plugin.non_pci.overlay_shade_selector, 'light');
   });
 }
