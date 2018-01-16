@@ -178,14 +178,23 @@ export default function () {
       case 'js':
         browser.click(BACKEND.plugin.non_pci.integration);
         browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'checkoutjs');
+        browser.click(BACKEND.plugin.non_pci.title); // contex switch to the tile field to avoid dropdown missing the focus 
+        browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'checkoutjs');
+        browser.click(BACKEND.plugin.non_pci.title);
         break;
       case 'hosted':
         browser.click(BACKEND.plugin.non_pci.integration);
         browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'hosted');
+        browser.click(BACKEND.plugin.non_pci.title);
+        browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'hosted');
+        browser.click(BACKEND.plugin.non_pci.title);
         break;
       case 'frames':
         browser.click(BACKEND.plugin.non_pci.integration);
         browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'frames');
+        browser.click(BACKEND.plugin.non_pci.title);
+        browser.selectByValue(BACKEND.plugin.non_pci.integration_selector, 'frames');
+        browser.click(BACKEND.plugin.non_pci.title);
         break;
       default:
         break;

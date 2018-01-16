@@ -1,6 +1,5 @@
 Feature: Non-Pci Test Suite
 
- 
 Scenario: I should be able to complete a normal transaction with the js integration
       Given I go to the backend of Checkout's plugin
       Given I open the non-pci settings

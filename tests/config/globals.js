@@ -2,6 +2,8 @@
 export default {
   value: {
     timeout_out: 60000,
+    resolution_w: 1920,
+    resolution_h: 3000,
     url: {
       wordpress_base: 'http://127.0.0.1:8082/wordpress',
       admin_path: '/wp-admin',
