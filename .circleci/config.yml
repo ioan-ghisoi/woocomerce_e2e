@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: johnnyshrewd/wp:circle
+      - image: integrationcheckout/ecommerce:magento2.2
     working_directory: ~/cko_wp
     steps:
       - checkout
@@ -24,4 +24,4 @@ jobs:
           path: ~/cko_wp/tests/screenshots
           destination: Failed-Tests
 
-          
+
