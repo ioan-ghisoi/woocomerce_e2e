@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: johnnyshrewd/wp:add
+      - image: johnnyshrewd/wp:new
     working_directory: ~/cko_wp
     steps:
       - checkout
