@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: johnnyshrewd/wp
+    working_directory: ~/cko_wp
+    steps:
+      - checkout
+      - run:
+          name: Refresh Magetno and Install Checkout
+          command: |
+            sudo a2enmod rewrite && sudo service apache2 restart && sudo service mysql restart
+            cd /var/www/html/wordpress/wp-content/plugins/ && sudo mv ~/cko_wp/woocommerce-checkout-non-pci-gateway . && sudo mv ~/cko_wp/woocommerce-checkout-pci-gateway .
+            cd /var/www/html/magento22 && sudo php bin/magento setup:upgrade && sudo php bin/magento setup:di:compile && sudo chmod -R 777 .
+      - run:
+          name: Install dependencies
+          command: |
+            cd ~/cko_magento2/tests && npm i 
+      - run:
+          name: Run Tests
+          command: |
+            cd ~/cko_magento2/tests && ./node_modules/.bin/chimp config/chimp.js --fail-fast
+      - store_artifacts:
+          path: ~/cko_magento2/tests/screenshots
+          destination: Failed-Tests
