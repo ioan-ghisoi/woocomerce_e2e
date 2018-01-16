@@ -12,7 +12,7 @@ export default function () {
       width: VAL.resolution_w,
       height: VAL.resolution_h,
     }, true);
-    browser.url('http://localhost');
+    browser.url('http://google.com');
     browser.click(BACKEND.plugin.non_pci.settings_non_pci);
   });
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
