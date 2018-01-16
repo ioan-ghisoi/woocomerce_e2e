@@ -102,6 +102,12 @@ Scenario: I should be able to pay with a saved card
 
 
 Scenario: I should be able to pay with a saved card 
+      Given I go to the backend of Checkout's plugin
+      Given I open the non-pci settings
+      Then I customise the js and hosted solution
+      Given I save the backend settings
+      Given I set the integration type to js
+      Given I save the backend settings
       Then I complete the order flow until the payment stage
       Then I select the non-pci payment option
       Then I select the new card option

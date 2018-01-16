@@ -63,7 +63,7 @@ export default function () {
   });
   this.Given(/^I save the backend settings$/, () => {
     browser.click(BACKEND.plugin.save);
-    browser.pause(2000); // allow time for save request to finish
+    browser.pause(5000); // allow time for save request to finish
   });
   this.Given(/^I create an account$/, () => {
     browser.url(URL.wordpress_base);
