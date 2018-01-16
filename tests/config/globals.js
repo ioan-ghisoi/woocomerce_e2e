@@ -5,7 +5,7 @@ export default {
     resolution_w: 1920,
     resolution_h: 3000,
     url: {
-      wordpress_base: 'http://localhost/wordpress',
+      wordpress_base: 'http://127.0.0.1:8082/wordpress',
       admin_path: '/wp-admin',
       payments_path: '/wp-admin/plugins.php',
       order_path_1: '/wp-admin/post.php?post=',
