@@ -12,6 +12,8 @@ export default function () {
       width: VAL.resolution_w,
       height: VAL.resolution_h,
     }, true);
+    browser.url(URL.wordpress_base);
+    browser.click(BACKEND.plugin.non_pci.settings_non_pci);
   });
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
     browser.url(URL.wordpress_base + URL.admin_path);
