@@ -68,24 +68,26 @@ export default function () {
     browser.url(URL.wordpress_base);
   });
   this.Given(/^I enable the 2 checkout plugins$/, () => {
-    browser.url(URL.wordpress_base + URL.payments_path);
+    browser.url(URL.wordpress_base);
     browser.click(BACKEND.plugin.non_pci.settings_non_pci);
-    browser.waitUntil(function () {
-      return browser.isVisible(BACKEND.plugin.non_pci.public_key);
-    }, VAL.timeout_out, 'settings should be loaded');
-    if (!browser.isSelected(BACKEND.plugin.non_pci.enable_plugin)) {
-      browser.click(BACKEND.plugin.non_pci.enable_plugin);
-      browser.click(BACKEND.plugin.save);
-    }
-    browser.url(URL.wordpress_base + URL.payments_path);
-    browser.click(BACKEND.plugin.pci.settings_pci);
-    browser.waitUntil(function () {
-      return browser.isVisible(BACKEND.plugin.pci.secret_key);
-    }, VAL.timeout_out, 'settings should be loaded');
-    if (!browser.isSelected(BACKEND.plugin.pci.enable_plugin)) {
-      browser.click(BACKEND.plugin.pci.enable_plugin);
-      browser.click(BACKEND.plugin.save);
-    }
-    browser.url(URL.wordpress_base + URL.payments_path);
+    // browser.url(URL.wordpress_base + URL.payments_path);
+    // browser.click(BACKEND.plugin.non_pci.settings_non_pci);
+    // browser.waitUntil(function () {
+    //   return browser.isVisible(BACKEND.plugin.non_pci.public_key);
+    // }, VAL.timeout_out, 'settings should be loaded');
+    // if (!browser.isSelected(BACKEND.plugin.non_pci.enable_plugin)) {
+    //   browser.click(BACKEND.plugin.non_pci.enable_plugin);
+    //   browser.click(BACKEND.plugin.save);
+    // }
+    // browser.url(URL.wordpress_base + URL.payments_path);
+    // browser.click(BACKEND.plugin.pci.settings_pci);
+    // browser.waitUntil(function () {
+    //   return browser.isVisible(BACKEND.plugin.pci.secret_key);
+    // }, VAL.timeout_out, 'settings should be loaded');
+    // if (!browser.isSelected(BACKEND.plugin.pci.enable_plugin)) {
+    //   browser.click(BACKEND.plugin.pci.enable_plugin);
+    //   browser.click(BACKEND.plugin.save);
+    // }
+    // browser.url(URL.wordpress_base + URL.payments_path);
   });
 }
