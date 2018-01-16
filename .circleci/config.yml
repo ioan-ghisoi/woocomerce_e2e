@@ -23,4 +23,5 @@ jobs:
       - store_artifacts:
           path: ~/cko_wp/tests/screenshots
           destination: Failed-Tests
+
           
