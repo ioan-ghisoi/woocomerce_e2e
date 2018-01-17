@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Refresh Wordpress and Install Checkout
           command: |
-            sudo apache2 restart && sudo service mysql restart
+            sudo service apache2 restart && sudo service mysql restart
       - run:
           name: Install dependencies
           command: |
