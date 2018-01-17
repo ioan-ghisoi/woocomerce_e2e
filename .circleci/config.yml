@@ -10,10 +10,7 @@ jobs:
       - run:
           name: Refresh Wordpress and Install Checkout
           command: |
-            sudo unlink "/usr/lib/apache2/modules/libphp7.0.so"
-            sudo apt-get install libapache2-mod-php
-            sudo a2enmod php7.0
-            sudo a2enmod rewrite && sudo /etc/init.d/apache2 restart && sudo service mysql restart
+            sudo a2enmod rewrite && sudo /etc/init.d/apache2 start && sudo /etc/init.d/apache2 restart && sudo service mysql restart
             cd /var/www/html/wordpress/wp-content/plugins/ && sudo mv ~/cko_wp/woocommerce-checkout-non-pci-gateway . && sudo mv ~/cko_wp/woocommerce-checkout-pci-gateway . && sudo chmod -R 777 .
       - run:
           name: Install dependencies
