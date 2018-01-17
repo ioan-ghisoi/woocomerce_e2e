@@ -15,6 +15,7 @@ export default function () {
   });
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
     browser.url(URL.wordpress_base + URL.admin_path);
+    browser.pause(2000);
     if (browser.isVisible(BACKEND.admin_username)) {
       browser.setValue(BACKEND.admin_username, VAL.admin.username);
       browser.setValue(BACKEND.admin_password, VAL.admin.password);
@@ -89,7 +90,6 @@ export default function () {
   });
   this.Given(/^I create a product$/, () => {
     console.log('1');
-    browser.pause(2000);
     browser.click(BACKEND.activate_woocomerce);
     console.log('2');
     browser.pause(2000);
