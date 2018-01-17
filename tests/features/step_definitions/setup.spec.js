@@ -90,7 +90,6 @@ export default function () {
   this.Given(/^I create a product$/, () => {
     browser.click(BACKEND.activate_woocomerce);
     browser.waitForVisible(BACKEND.woo_adress, VAL.timeout_out);
-    browser.url('http://localhost/wordpress/wp-admin/index.php?page=wc-setup');
     browser.pause(2000);
     browser.setValue(BACKEND.woo_adress, 'London');
     browser.setValue(BACKEND.woo_city, 'London');
@@ -120,8 +119,7 @@ export default function () {
     browser.setValue(BACKEND.woo_product_name, 'test');
     browser.setValue(BACKEND.woo_normal_price, '1234');
     browser.setValue(BACKEND.woo_promo_price, '123');
-    browser.click(BACKEND.woo_product_name);
-    browser.pause(2000);
+    browser.pause(2000); // allow time for wordpress to update
     browser.click(BACKEND.woo_publish);
     browser.url(URL.wordpress_base + URL.payments_path);
   });
