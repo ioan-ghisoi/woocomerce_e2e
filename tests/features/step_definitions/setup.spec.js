@@ -14,7 +14,7 @@ export default function () {
     }, true);
   });
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
-    browser.url(URL.wordpress_base + URL.admin_path);
+    browser.url(URL.wordpress_base + URL.payments_path);
     try {
       browser.waitForVisible(BACKEND.plugin.pci.activate_pci, 6000);
     } catch (err) {
