@@ -56,7 +56,7 @@ export default function () {
         try {
           browser.click(FRONTEND.order.pci_option);
         } catch (err) {
-          browser.pause(5000); // avoid slow animation errors
+          browser.pause(10000); // avoid slow animation errors
           browser.click(FRONTEND.order.pci_option);
         }
         break;
@@ -67,7 +67,7 @@ export default function () {
         try {
           browser.click(FRONTEND.order.non_pci_option);
         } catch (err) {
-          browser.pause(5000); // avoid slow animation errors
+          browser.pause(10000); // avoid slow animation errors
           browser.click(FRONTEND.order.non_pci_option);
         }
         break;

@@ -405,6 +405,7 @@ export default function () {
           default:
             break;
         }
+        browser.pause(5000);
         break;
       default:
         break;
@@ -413,7 +414,7 @@ export default function () {
   this.Then(/^I complete the three d password$/, () => {
     browser.waitUntil(function () {
       return browser.isVisible(FRONTEND.order.three_d_password);
-    }, VAL.timeout_out, 'checkout pyament option should exist');
+    }, VAL.timeout_out, 'three d password field should be visible');
     browser.setValue(FRONTEND.order.three_d_password, VAL.admin.three_d_password);
     browser.click(FRONTEND.order.three_d_submit);
   });
