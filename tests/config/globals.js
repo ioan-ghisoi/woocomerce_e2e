@@ -153,6 +153,7 @@ export default {
       admin_username: '#user_login',
       admin_password: '#user_pass',
       admin_sign_in: '#wp-submit',
+      dashboard: '#menu-dashboard',
       activate_woocomerce: 'tr.inactive:nth-child(5) > td:nth-child(2) > div:nth-child(2) > span:nth-child(1) > a:nth-child(1)',
       woo_adress: '#store_address',
       woo_next: '.button-primary',

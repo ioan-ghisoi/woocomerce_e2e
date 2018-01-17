@@ -16,7 +16,7 @@ export default function () {
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
     browser.url(URL.wordpress_base + URL.payments_path);
     try {
-      browser.waitForVisible(BACKEND.plugin.pci.activate_pci, 6000);
+      browser.waitForVisible(BACKEND.dashboard, 6000);
     } catch (err) {
       browser.setValue(BACKEND.admin_username, VAL.admin.username);
       browser.setValue(BACKEND.admin_password, VAL.admin.password);
