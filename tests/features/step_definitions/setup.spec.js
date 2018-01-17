@@ -68,7 +68,6 @@ export default function () {
     browser.url(URL.wordpress_base);
   });
   this.Given(/^I enable the 2 checkout plugins$/, () => {
-    browser.url(URL.wordpress_base + URL.payments_path);
     browser.click(BACKEND.plugin.non_pci.settings_non_pci);
     browser.waitUntil(function () {
       return browser.isVisible(BACKEND.plugin.non_pci.public_key);
