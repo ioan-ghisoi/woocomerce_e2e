@@ -89,6 +89,12 @@ export default function () {
   });
   this.Given(/^I create a product$/, () => {
     browser.click(BACKEND.activate_woocomerce);
+    browser.pause(2000);
+    if (browser.isVisible(BACKEND.admin_username)) {
+      browser.setValue(BACKEND.admin_username, VAL.admin.username);
+      browser.setValue(BACKEND.admin_password, VAL.admin.password);
+      browser.click(BACKEND.admin_sign_in);
+    }
     browser.waitForVisible(BACKEND.woo_adress, VAL.timeout_out);
     browser.pause(2000);
     browser.setValue(BACKEND.woo_adress, 'London');
