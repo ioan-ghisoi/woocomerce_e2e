@@ -61,6 +61,7 @@ export default function () {
         }
         break;
       case 'non-pci':
+        browser.pause(3000); // allow js to load
         browser.waitUntil(function () {
           return browser.isVisible(FRONTEND.order.non_pci_option);
         }, VAL.timeout_out, 'non-pci option should be visible');
