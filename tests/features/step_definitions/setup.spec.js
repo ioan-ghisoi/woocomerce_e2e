@@ -15,13 +15,14 @@ export default function () {
   });
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
     browser.url(URL.wordpress_base + URL.admin_path);
-    browser.pause(2000);
-    if (browser.isVisible(BACKEND.admin_username)) {
+    try {
+      browser.waitForVisible(BACKEND.plugin.pci.activate_pci, 6000);
+    } catch (err) {
       browser.setValue(BACKEND.admin_username, VAL.admin.username);
       browser.setValue(BACKEND.admin_password, VAL.admin.password);
       browser.click(BACKEND.admin_sign_in);
+      browser.pause(2000);
     }
-    browser.url(URL.wordpress_base + URL.payments_path);
     if (browser.isVisible(BACKEND.plugin.pci.activate_pci)) {
       browser.click(BACKEND.plugin.pci.activate_pci);
     }
