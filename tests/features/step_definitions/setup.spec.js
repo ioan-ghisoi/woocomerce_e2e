@@ -12,8 +12,6 @@ export default function () {
       width: VAL.resolution_w,
       height: VAL.resolution_h,
     }, true);
-    browser.url('http://localhost/wordpress');
-    browser.click("#asd");
   });
   this.Given(/^I go to the backend of Checkout's plugin$/, () => {
     browser.url(URL.wordpress_base + URL.admin_path);
