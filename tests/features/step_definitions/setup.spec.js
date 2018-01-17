@@ -88,7 +88,6 @@ export default function () {
     browser.url(URL.wordpress_base + URL.payments_path);
   });
   this.Given(/^I create a product$/, () => {
-    browser.url(URL.wordpress_base + URL.payments_path);
     browser.click(BACKEND.activate_woocomerce);
     browser.waitForVisible(BACKEND.woo_adress, VAL.timeout_out);
     browser.url('http://localhost/wordpress/wp-admin/index.php?page=wc-setup');
