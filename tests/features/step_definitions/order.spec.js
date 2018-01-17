@@ -102,6 +102,7 @@ export default function () {
     }, VAL.timeout_out, 'order confirmation should be visible');
   });
   this.Then(/^I enable the option to save the card$/, () => {
+    browser.pause(5000);
     browser.waitUntil(function () {
       return browser.isVisible(FRONTEND.order.non_pci_save_card);
     }, VAL.timeout_out, 'save card option should be visible');
