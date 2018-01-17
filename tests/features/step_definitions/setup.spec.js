@@ -90,61 +90,46 @@ export default function () {
     browser.url(URL.wordpress_base + URL.payments_path);
   });
   this.Given(/^I create a product$/, () => {
-    console.log('1');
     browser.click(BACKEND.activate_woocomerce);
-    console.log('2');
     browser.pause(2000);
     if (browser.isVisible(BACKEND.admin_username)) {
       browser.setValue(BACKEND.admin_username, VAL.admin.username);
       browser.setValue(BACKEND.admin_password, VAL.admin.password);
       browser.click(BACKEND.admin_sign_in);
     }
-    console.log('3');
     browser.waitForVisible(BACKEND.woo_adress, VAL.timeout_out);
-    console.log('4');
     browser.pause(2000);
-    console.log('5');
     browser.setValue(BACKEND.woo_adress, 'London');
     browser.setValue(BACKEND.woo_city, 'London');
     browser.setValue(BACKEND.woo_postcode, 'w1w w1w');
-    console.log('6');
     browser.click(BACKEND.woo_next);
-    console.log('7');
     browser.pause(2000);
     browser.waitForVisible(BACKEND.wo_pay, VAL.timeout_out);
     browser.click(BACKEND.wo_pay);
     browser.click(BACKEND.woo_next);
-    console.log('8');
     browser.pause(2000);
     browser.waitForVisible(BACKEND.woo_shipping_1, VAL.timeout_out);
     browser.setValue(BACKEND.woo_shipping_1, '0');
     browser.setValue(BACKEND.woo_shipping_2, '0');
-    console.log('9');
     browser.click(BACKEND.woo_next);
-    console.log('10');
     browser.pause(2000);
     browser.waitForVisible(BACKEND.woo_theme, VAL.timeout_out);
     browser.click(BACKEND.woo_theme);
     browser.click(BACKEND.woo_next);
-    console.log('11');
     browser.pause(2000);
     browser.waitForVisible(BACKEND.woo_skip, VAL.timeout_out);
     browser.click(BACKEND.woo_skip);
-    console.log('12');
     browser.pause(2000);
     browser.waitForVisible(BACKEND.woo_create_product, VAL.timeout_out);
     browser.click(BACKEND.woo_create_product);
-    console.log('13');
     browser.pause(2000);
     browser.waitForVisible(BACKEND.woo_product_name, VAL.timeout_out);
-    console.log('14');
     browser.setValue(BACKEND.woo_product_name, 'test');
     browser.setValue(BACKEND.woo_normal_price, '1234');
     browser.setValue(BACKEND.woo_promo_price, '123');
     browser.pause(2000); // allow time for wordpress to update
     browser.click(BACKEND.woo_publish);
     browser.pause(2000);
-    console.log('15');
     browser.url(URL.wordpress_base + URL.payments_path);
   });
 }
