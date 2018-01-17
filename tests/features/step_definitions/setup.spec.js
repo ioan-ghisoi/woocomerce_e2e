@@ -19,8 +19,8 @@ export default function () {
       browser.setValue(BACKEND.admin_username, VAL.admin.username);
       browser.setValue(BACKEND.admin_password, VAL.admin.password);
       browser.click(BACKEND.admin_sign_in);
-      browser.url(URL.wordpress_base + URL.payments_path);
     }
+    browser.url(URL.wordpress_base + URL.payments_path);
     if (browser.isVisible(BACKEND.plugin.pci.activate_pci)) {
       browser.click(BACKEND.plugin.pci.activate_pci);
     }
