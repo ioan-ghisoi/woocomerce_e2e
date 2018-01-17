@@ -5,7 +5,6 @@ Scenario: I should be able to setup Wordpress/Woocomerce
       Given I set the viewport and timeout
       Given I go to the backend of Checkout's plugin
       Given I create a product
-      Given I enable the 2 checkout plugins
       Given I open the pci settings
       Given I enable saved cards for pci
       Given I set the pci sandbox keys
