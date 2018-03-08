@@ -1,7 +1,0 @@
-{
-  "extends": "airbnb",
-  "globals": {
-    "browser": true
-  },
-  "parser": "babel-eslint"
-}
